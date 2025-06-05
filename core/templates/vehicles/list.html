@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto py-8">
+  <!-- Vehicle Cards -->
+  <div class="space-y-8">
+    {% for vehicle in vehicles %}
+      <div class="bg-gray-100 rounded-2xl shadow p-6 flex flex-col md:flex-row items-center gap-6">
+        <div class="flex-shrink-0 w-full md:w-56 flex justify-center">
+          <img src="{{ vehicle.image.url }}" alt="{{ vehicle }}" class="h-32 object-contain rounded-xl bg-white p-2" />
+        </div>
+        <div class="flex-1 w-full">
+          <div class="text-gray-500 text-sm font-semibold">{{ vehicle.make }}</div>
+          <div class="text-2xl font-bold mb-2">{{ vehicle.model }}</div>
+          <div class="bg-white rounded-lg p-4 flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <div class="font-semibold">{{ vehicle.model }}</div>
+              <div class="text-xs text-gray-500">{{ vehicle.year }} Model year</div>
+            </div>
+            <div class="text-right mt-2 md:mt-0">
+              <div class="text-gray-400 line-through text-sm">₱{{ vehicle.daily_rate|floatformat:2|add:"1000" }}</div>
+              <div class="text-2xl font-bold text-orange-600">₱{{ vehicle.daily_rate|floatformat:2 }}</div>
+              <div class="text-orange-500 font-semibold text-sm">Per day</div>
+            </div>
+            <div class="mt-4 md:mt-0">
+              <a href="{% url 'rent_vehicle' vehicle.id %}" class="bg-orange-500 text-white px-6 py-2 rounded-lg font-bold hover:bg-orange-600 transition">Rent Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No vehicles available.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

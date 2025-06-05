@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile - Rentalia{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-orange-100 to-blue-100 min-h-screen py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+            <!-- Sidebar -->
+            <aside class="py-6 px-2 sm:px-6 lg:col-span-3">
+                <nav class="space-y-1">
+                    <a href="{% url 'profile' %}"
+                        class="bg-orange-50 border-orange-500 text-orange-700 hover:bg-orange-50 hover:text-orange-700 group border-l-4 px-3 py-2 flex items-center text-sm font-medium">
+                        <span class="material-icons text-orange-500 mr-3">account_circle</span>
+                        Profile Settings
+                    </a>
+                    <a href="{% url 'change_password' %}"
+                        class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium">
+                        <span class="material-icons text-gray-400 group-hover:text-gray-500 mr-3">lock</span>
+                        Password
+                    </a>
+                    <a href="{% url 'delete_account' %}"
+                        class="border-transparent text-gray-900 hover:bg-red-50 hover:text-red-700 group border-l-4 px-3 py-2 flex items-center text-sm font-medium">
+                        <span class="material-icons text-gray-400 group-hover:text-red-500 mr-3">delete_forever</span>
+                        Delete Account
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Profile Settings -->
+            <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+                <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data" class="bg-white shadow-sm rounded-lg">
+                    {% csrf_token %}
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Profile Information</h3>
+                            <p class="mt-1 text-sm text-gray-500">Update your account's profile information and email address.</p>
+                        </div>
+
+                        <!-- Profile Picture -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                            <div class="mt-2 flex items-center space-x-4">
+                                {% if user.profile_picture %}
+                                    <img src="{{ user.profile_picture.url }}" alt="Profile picture" class="h-16 w-16 rounded-full object-cover">
+                                {% else %}
+                                    <span class="h-16 w-16 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                                        <span class="material-icons text-4xl text-gray-400">account_circle</span>
+                                    </span>
+                                {% endif %}
+                                <input type="file" name="profile_picture" id="profile_picture" class="hidden" accept="image/*">
+                                <button type="button" onclick="document.getElementById('profile_picture').click()"
+                                    class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                    Change
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                                <div class="mt-1">
+                                    <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}"
+                                        class="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                <div class="mt-1">
+                                    <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}"
+                                        class="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <div class="mt-1">
+                                <input type="email" name="email" id="email" value="{{ user.email }}"
+                                    class="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-3 bg-gray-50 rounded-b-lg text-right">
+                        <button type="submit"
+                            class="bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

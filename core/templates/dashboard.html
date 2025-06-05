@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="relative bg-gradient-to-r from-orange-100 to-blue-100 min-h-screen z-0">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Welcome Section -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 mb-8 transform hover:scale-[1.02] transition-transform relative z-0">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">
+            Welcome back, {{ user.first_name|default:user.username }}! 👋
+          </h1>
+          <p class="text-gray-600">
+            Ready to find your perfect rental car?
+          </p>
+        </div>
+        <a href="{% url 'vehicle_list' %}" 
+           class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-150">
+          <span class="material-icons mr-2">directions_car</span>
+          Rent a Car
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <!-- Total Rentals -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-500">Total Rentals</p>
+            <p class="text-2xl font-bold text-gray-900">{{ total_rentals|default:"0" }}</p>
+          </div>
+          <div class="bg-orange-100 rounded-full p-3">
+            <span class="material-icons text-orange-600">receipt_long</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Rentals -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-500">Active Rentals</p>
+            <p class="text-2xl font-bold text-gray-900">{{ active_rentals|default:"0" }}</p>
+          </div>
+          <div class="bg-blue-100 rounded-full p-3">
+            <span class="material-icons text-blue-600">local_shipping</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Available Vehicles -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-500">Available Vehicles</p>
+            <p class="text-2xl font-bold text-gray-900">{{ available_vehicles|default:"0" }}</p>
+          </div>
+          <div class="bg-green-100 rounded-full p-3">
+            <span class="material-icons text-green-600">directions_car</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Spent -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-500">Total Spent</p>
+            <p class="text-2xl font-bold text-gray-900">₱{{ total_spent|default:"0"|floatformat:2 }}</p>
+          </div>
+          <div class="bg-purple-100 rounded-full p-3">
+            <span class="material-icons text-purple-600">payments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Rentals and Featured Vehicles -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Recent Rentals -->
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-800">Recent Rentals</h2>
+          <a href="{% url 'vehicle_list' %}" class="text-orange-500 hover:text-orange-600 font-medium text-sm">View All</a>
+        </div>
+        {% if recent_rentals %}
+          <div class="space-y-4">
+            {% for rental in recent_rentals %}
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                <div class="flex items-center space-x-4">
+                  <div class="bg-orange-100 rounded-full p-2">
+                    <span class="material-icons text-orange-600">directions_car</span>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900">{{ rental.vehicle }}</p>
+                    <p class="text-sm text-gray-500">{{ rental.start_date }} - {{ rental.end_date }}</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <p class="font-bold text-orange-600">₱{{ rental.total_cost|floatformat:2 }}</p>
+                  {% if rental.is_active and rental.start_date > today %}
+                  <a href="{% url 'cancel_rental' rental.id %}" 
+                     class="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <span class="material-icons text-sm mr-1">cancel</span>
+                    Cancel
+                  </a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="text-center py-8 text-gray-500">
+            <span class="material-icons text-4xl mb-2">history</span>
+            <p>No rental history yet</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Featured Vehicles -->
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold text-gray-800">Featured Vehicles</h2>
+          <a href="{% url 'vehicle_list' %}" class="text-orange-500 hover:text-orange-600 font-medium text-sm">View All</a>
+        </div>
+        {% if featured_vehicles %}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% for vehicle in featured_vehicles %}
+              <div class="bg-gray-50 rounded-xl p-4">
+                <img src="{{ vehicle.image.url }}" alt="{{ vehicle }}" class="w-full h-32 object-cover rounded-lg mb-4">
+                <h3 class="font-medium text-gray-900">{{ vehicle.make }} {{ vehicle.model }}</h3>
+                <p class="text-sm text-gray-500">{{ vehicle.year }} • {{ vehicle.vehicle_type }}</p>
+                <div class="mt-2 flex items-center justify-between">
+                  <p class="font-bold text-orange-600">₱{{ vehicle.daily_rate|floatformat:2 }}/day</p>
+                  <a href="{% url 'rent_vehicle' vehicle.id %}" class="text-sm font-medium text-blue-600 hover:text-blue-700">Rent Now</a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="text-center py-8 text-gray-500">
+            <span class="material-icons text-4xl mb-2">directions_car</span>
+            <p>No featured vehicles available</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-orange-100 to-blue-100 min-h-screen py-12">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-orange-500 to-blue-500 px-8 py-12 text-white text-center">
+        <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+        <p class="text-lg opacity-90">We're here to help and answer any questions you might have</p>
+      </div>
+
+      <div class="p-8">
+        <!-- Contact Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Contact Information -->
+          <div class="space-y-6">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800 mb-4">Contact Information</h2>
+              
+              <!-- Phone -->
+              <div class="flex items-start space-x-4 mb-4">
+                <div class="bg-orange-100 rounded-full p-3 mt-1">
+                  <span class="material-icons text-orange-600">phone</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-800">Phone</h3>
+                  <p class="text-gray-600">09702268904</p>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start space-x-4 mb-4">
+                <div class="bg-blue-100 rounded-full p-3 mt-1">
+                  <span class="material-icons text-blue-600">email</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-800">Email</h3>
+                  <a href="mailto:ajobalobao@filamer.edu.py" class="text-blue-600 hover:text-blue-700">ajobalobao@filamer.edu.py</a>
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="flex items-start space-x-4 mb-4">
+                <div class="bg-green-100 rounded-full p-3 mt-1">
+                  <span class="material-icons text-green-600">location_on</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-800">Address</h3>
+                  <p class="text-gray-600">
+                    Rentalia Co., Ltd.<br>
+                    123 Roxas Ave<br>
+                    Roxas City
+                  </p>
+                </div>
+              </div>
+
+              <!-- Business Hours -->
+              <div class="flex items-start space-x-4">
+                <div class="bg-purple-100 rounded-full p-3 mt-1">
+                  <span class="material-icons text-purple-600">schedule</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-800">Business Hours</h3>
+                  <p class="text-gray-600">7:30 AM to 5:30 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="bg-gray-100 rounded-xl p-4 h-[400px] flex items-center justify-center">
+            <div class="text-center">
+              <span class="material-icons text-6xl text-gray-400 mb-4">map</span>
+              <p class="text-gray-500">Interactive map coming soon</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Developer Credit -->
+        <div class="mt-12 pt-8 border-t text-center">
+          <p class="text-gray-500">
+            Website developed by 
+            <span class="font-semibold text-gray-700">Aj Obalobao</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 

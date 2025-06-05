@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto py-8">
+  <div class="bg-white rounded-2xl shadow-lg p-8">
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-2">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</h2>
+      <div class="text-xl text-orange-600 font-bold">₱{{ vehicle.daily_rate|floatformat:2 }} per day</div>
+    </div>
+
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      
+      <!-- Location Selection -->
+      <div class="space-y-2">
+        <label class="block font-semibold">Pickup Location</label>
+        <div class="flex items-center">
+          <span class="material-icons text-gray-500 mr-2">place</span>
+          <select name="location" class="flex-1 border rounded px-3 py-2" required>
+            <option value="">Select Location</option>
+            {% for location in locations %}
+              <option value="{{ location.id }}">{{ location.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <!-- Date Selection -->
+      <div class="space-y-2">
+        <label class="block font-semibold">Rental Period</label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">Start Date</label>
+            <input type="date" name="start_date" class="w-full border rounded px-3 py-2" required
+                   min="{{ today|date:'Y-m-d' }}">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">End Date</label>
+            <input type="date" name="end_date" class="w-full border rounded px-3 py-2" required
+                   min="{{ today|date:'Y-m-d' }}">
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Cost Preview -->
+      <div class="bg-gray-50 rounded-lg p-4 mt-6">
+        <div class="flex justify-between items-center">
+          <div class="text-gray-600">Daily Rate:</div>
+          <div class="font-semibold">₱{{ vehicle.daily_rate|floatformat:2 }}</div>
+        </div>
+        <div class="flex justify-between items-center mt-2">
+          <div class="text-gray-600">Number of Days:</div>
+          <div class="font-semibold" id="num-days">-</div>
+        </div>
+        <div class="border-t mt-2 pt-2">
+          <div class="flex justify-between items-center">
+            <div class="font-bold text-lg">Total Cost:</div>
+            <div class="font-bold text-lg text-orange-600" id="total-cost">-</div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-orange-500 text-white py-3 rounded-lg font-bold hover:bg-orange-600 transition">
+        Confirm Rental
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript for calculating total cost -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const startDate = document.querySelector('input[name="start_date"]');
+  const endDate = document.querySelector('input[name="end_date"]');
+  const dailyRate = {{ vehicle.daily_rate }};
+  
+  function updateTotalCost() {
+    if (startDate.value && endDate.value) {
+      const start = new Date(startDate.value);
+      const end = new Date(endDate.value);
+      const diffTime = Math.abs(end - start);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays > 0) {
+        document.getElementById('num-days').textContent = diffDays;
+        document.getElementById('total-cost').textContent = '₱' + (dailyRate * diffDays).toFixed(2);
+      }
+    }
+  }
+
+  startDate.addEventListener('change', updateTotalCost);
+  endDate.addEventListener('change', updateTotalCost);
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,15 @@
+{
+  "name": "rentalia",
+  "version": "1.0.0",
+  "description": "Car Rental Website",
+  "scripts": {
+    "build": "postcss core/static/css/tailwind.css -o core/static/css/styles.css",
+    "watch": "postcss core/static/css/tailwind.css -o core/static/css/styles.css --watch"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.5"
+  }
+}
