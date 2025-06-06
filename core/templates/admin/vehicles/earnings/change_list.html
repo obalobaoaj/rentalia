@@ -1,0 +1,35 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block content_title %}
+    <h1>Earnings Management</h1>
+{% endblock %}
+
+{% block result_list %}
+    {% if summary_stats %}
+    <div class="earnings-summary">
+        <div class="module">
+            <h2>Earnings Summary</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-label">Total Owner Earnings</span>
+                    <span class="stat-value">${{ summary_stats.total_owner_earnings|floatformat:2 }}</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Total Platform Commission</span>
+                    <span class="stat-value">${{ summary_stats.total_platform_commission|floatformat:2 }}</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Total Transactions</span>
+                    <span class="stat-value">{{ summary_stats.total_transactions }}</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Pending Payments</span>
+                    <span class="stat-value">${{ summary_stats.pending_payments|floatformat:2 }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %} 
