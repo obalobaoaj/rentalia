@@ -1,0 +1,146 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Rentalia Admin') }}{% endblock %}
+
+{% block extrastyle %}
+<style>
+    :root {
+        --primary: #2563eb;
+        --secondary: #3b82f6;
+        --accent: #60a5fa;
+        --primary-fg: #fff;
+    }
+
+    /* Header styling */
+    #header {
+        background: var(--primary);
+        color: var(--primary-fg);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #header a:link, #header a:visited {
+        color: var(--primary-fg);
+    }
+
+    /* Branding */
+    #branding h1 {
+        font-weight: bold;
+    }
+
+    /* Content area */
+    #content {
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        margin: 20px;
+    }
+
+    /* Dashboard cards */
+    .dashboard-card {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* Module styling */
+    .module {
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 20px;
+        background: white;
+    }
+
+    .module h2 {
+        background: var(--primary);
+        color: var(--primary-fg);
+        padding: 12px 15px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    /* Form styling */
+    .form-row {
+        padding: 12px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    /* Button styling */
+    .button, input[type=submit], input[type=button], .submit-row input {
+        background: var(--primary);
+        color: var(--primary-fg);
+        border-radius: 4px;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover {
+        background: var(--secondary);
+    }
+
+    /* Table styling */
+    #changelist table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    #changelist table thead th {
+        background: #f3f4f6;
+        border-bottom: 2px solid #e5e7eb;
+    }
+
+    #changelist table tbody tr:hover {
+        background: #f9fafb;
+    }
+
+    /* Navigation */
+    #nav-sidebar {
+        background: white;
+        border-right: 1px solid #e5e7eb;
+    }
+
+    #nav-sidebar .module h2 {
+        background: none;
+        color: #374151;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    /* Breadcrumbs */
+    div.breadcrumbs {
+        background: var(--secondary);
+        padding: 15px 20px;
+        color: var(--primary-fg);
+    }
+
+    /* Messages */
+    .messagelist li {
+        border-radius: 4px;
+        margin: 0 0 10px 0;
+    }
+
+    /* Filter styling */
+    #changelist-filter h2 {
+        background: var(--primary);
+        border-radius: 8px 8px 0 0;
+    }
+
+    #changelist-filter {
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+    }
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        Rentalia Administration
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %} 

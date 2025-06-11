@@ -1,0 +1,178 @@
+/* Custom Admin Theme */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+    --text-color: #2c3e50;
+    --light-gray: #f5f6fa;
+}
+
+/* Header Styling */
+#header {
+    background: var(--primary-color);
+    color: white;
+}
+
+#header a:link, #header a:visited {
+    color: white;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background: var(--light-gray);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Content Area */
+#content {
+    padding: 20px;
+}
+
+/* List View Styling */
+#changelist table {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#changelist table thead th {
+    background: var(--primary-color);
+    color: white;
+}
+
+#changelist table tbody tr:hover {
+    background-color: var(--light-gray);
+}
+
+/* Form Styling */
+.module {
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: none;
+    margin-bottom: 20px;
+}
+
+.module h2 {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Buttons */
+.button, input[type=submit], input[type=button], .submit-row input {
+    background: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover {
+    background: var(--secondary-color);
+}
+
+.button.default, input[type=submit].default {
+    background: var(--accent-color);
+}
+
+.button.default:hover, input[type=submit].default:hover {
+    background: #2980b9;
+}
+
+/* Status Tags */
+.status-tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-active {
+    background: var(--success-color);
+    color: white;
+}
+
+.status-pending {
+    background: var(--warning-color);
+    color: white;
+}
+
+.status-cancelled {
+    background: var(--danger-color);
+    color: white;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    margin: 20px 0;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Filter Sidebar */
+#changelist-filter {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#changelist-filter h2 {
+    background: var(--primary-color);
+    color: white;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Messages */
+.messagelist li {
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.messagelist li.success {
+    background: var(--success-color);
+    color: white;
+}
+
+.messagelist li.warning {
+    background: var(--warning-color);
+    color: white;
+}
+
+.messagelist li.error {
+    background: var(--danger-color);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    #content {
+        padding: 10px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+} 
