@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Rental Requests - Rentalia{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-xl shadow-lg p-6">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6">Rental Requests</h1>
+
+        {% if pending_rentals %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Renter</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Cost</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for rental in pending_rentals %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                {% if rental.vehicle.image %}
+                                <div class="flex-shrink-0 h-10 w-10">
+                                    <img class="h-10 w-10 rounded-full object-cover" src="{{ rental.vehicle.image.url }}" alt="{{ rental.vehicle }}">
+                                </div>
+                                {% endif %}
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">{{ rental.vehicle }}</div>
+                                    <div class="text-sm text-gray-500">{{ rental.vehicle.vehicle_type }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">{{ rental.renter.get_full_name }}</div>
+                            <div class="text-sm text-gray-500">{{ rental.renter.email }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">{{ rental.start_date|date:"M d, Y" }}</div>
+                            <div class="text-sm text-gray-500">to {{ rental.end_date|date:"M d, Y" }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">₱{{ rental.total_cost }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                {% if rental.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                {{ rental.is_active|yesno:"Active,Inactive" }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            <form method="post" action="{% url 'approve_rental' rental.id %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-green-600 hover:text-green-900">Approve</button>
+                            </form>
+                            <form method="post" action="{% url 'reject_rental' rental.id %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-red-600 hover:text-red-900">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-8">
+            <span class="material-icons text-gray-400 text-5xl mb-4">inbox</span>
+            <p class="text-gray-500">No pending rental requests at the moment.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

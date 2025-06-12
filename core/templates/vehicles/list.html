@@ -19,6 +19,23 @@
                 <div class="text-gray-500 text-sm font-medium">{{ vehicle.make }}</div>
                 <h2 class="text-2xl font-bold text-gray-900">{{ vehicle.model }}</h2>
                 <div class="text-sm text-gray-600">{{ vehicle.year }} Model year</div>
+                {% if vehicle.description %}
+                <div class="mt-3 text-gray-700">
+                  <p class="line-clamp-3">{{ vehicle.description }}</p>
+                </div>
+                {% endif %}
+              </div>
+
+              <!-- Vehicle Details -->
+              <div class="mb-4 grid grid-cols-2 gap-4">
+                <div class="text-sm">
+                  <span class="text-gray-500">Type:</span>
+                  <span class="text-gray-700 font-medium">{{ vehicle.vehicle_type }}</span>
+                </div>
+                <div class="text-sm">
+                  <span class="text-gray-500">Status:</span>
+                  <span class="text-gray-700 font-medium">{% if vehicle.is_available %}Available{% else %}Rented{% endif %}</span>
+                </div>
               </div>
 
               <!-- Price and Action Section -->

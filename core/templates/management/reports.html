@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reports & Analytics - Rentalia{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Time Period Selector -->
+    <div class="mb-6">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl font-semibold text-gray-800">Reports & Analytics</h1>
+            <select id="timePeriod" class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="30">Last 30 Days</option>
+                <option value="90">Last 3 Months</option>
+                <option value="180">Last 6 Months</option>
+                <option value="365">Last Year</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Total Revenue -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-500">Total Revenue</span>
+                    <span class="material-icons text-green-500">payments</span>
+                </div>
+                <div class="mt-2">
+                    <span class="text-3xl font-bold text-green-600">₱{{ monthly_stats.total_revenue|floatformat:2 }}</span>
+                    <div class="flex items-center mt-2">
+                        <span class="text-xs text-gray-500">vs last period</span>
+                        {% if revenue_growth > 0 %}
+                        <span class="material-icons text-green-500 text-sm ml-1">arrow_upward</span>
+                        <span class="text-xs text-green-500">{{ revenue_growth }}%</span>
+                        {% else %}
+                        <span class="material-icons text-red-500 text-sm ml-1">arrow_downward</span>
+                        <span class="text-xs text-red-500">{{ revenue_growth }}%</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Rentals -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-500">Total Rentals</span>
+                    <span class="material-icons text-blue-500">directions_car</span>
+                </div>
+                <div class="mt-2">
+                    <span class="text-3xl font-bold text-blue-600">{{ monthly_stats.total_rentals }}</span>
+                    <p class="text-xs text-gray-500 mt-2">Completed rentals this period</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Users -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-500">New Users</span>
+                    <span class="material-icons text-purple-500">person_add</span>
+                </div>
+                <div class="mt-2">
+                    <span class="text-3xl font-bold text-purple-600">{{ monthly_stats.new_users }}</span>
+                    <p class="text-xs text-gray-500 mt-2">New registrations this period</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Average Rental Duration -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-500">Avg. Rental Duration</span>
+                    <span class="material-icons text-yellow-500">schedule</span>
+                </div>
+                <div class="mt-2">
+                    <span class="text-3xl font-bold text-yellow-600">{{ avg_rental_duration }}</span>
+                    <p class="text-xs text-gray-500 mt-2">Days per rental</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Revenue Trend -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Revenue Trend</h2>
+            <div class="h-80">
+                <canvas id="revenueTrendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Popular Vehicles -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Most Popular Vehicles</h2>
+            <div class="h-80">
+                <canvas id="popularVehiclesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Stats -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Popular Vehicles List -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Top Performing Vehicles</h2>
+            <div class="space-y-4">
+                {% for vehicle in monthly_stats.popular_vehicles %}
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div class="flex items-center space-x-4">
+                        {% if vehicle.image %}
+                        <img src="{{ vehicle.image.url }}" alt="{{ vehicle.name }}" class="w-12 h-12 rounded-lg object-cover">
+                        {% else %}
+                        <div class="w-12 h-12 rounded-lg bg-gray-200 flex items-center justify-center">
+                            <span class="material-icons text-gray-400">directions_car</span>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <p class="font-medium text-gray-900">{{ vehicle.name }}</p>
+                            <p class="text-sm text-gray-500">{{ vehicle.rental_count }} rentals</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-green-600">₱{{ vehicle.total_revenue|default:0|floatformat:2 }}</p>
+                        <p class="text-xs text-gray-500">Revenue</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Recent Activity</h2>
+            <div class="space-y-4">
+                {% for rental in recent_rentals %}
+                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
+                    <span class="material-icons text-blue-500">
+                        {% if rental.status == 'COMPLETED' %}check_circle
+                        {% elif rental.status == 'ACTIVE' %}directions_car
+                        {% else %}schedule{% endif %}
+                    </span>
+                    <div class="flex-1">
+                        <p class="text-sm text-gray-900">
+                            {{ rental.renter.username }} rented {{ rental.vehicle.name }}
+                        </p>
+                        <p class="text-xs text-gray-500">{{ rental.created_at|timesince }} ago</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-medium text-gray-900">₱{{ rental.total_cost }}</p>
+                        <p class="text-xs text-gray-500">{{ rental.duration.days }} days</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Revenue Trend Chart
+    const revenueTrendCtx = document.getElementById('revenueTrendChart').getContext('2d');
+    new Chart(revenueTrendCtx, {
+        type: 'line',
+        data: {
+            labels: {{ revenue_labels|safe }},
+            datasets: [{
+                label: 'Revenue',
+                data: {{ revenue_data }},
+                borderColor: '#10B981',
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '₱' + value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Popular Vehicles Chart
+    const popularVehiclesCtx = document.getElementById('popularVehiclesChart').getContext('2d');
+    new Chart(popularVehiclesCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ vehicle_labels|safe }},
+            datasets: [{
+                label: 'Number of Rentals',
+                data: {{ vehicle_data }},
+                backgroundColor: '#3B82F6',
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+
+    // Time period selector
+    document.getElementById('timePeriod').addEventListener('change', function() {
+        window.location.href = `?period=${this.value}`;
+    });
+});
+</script>
+{% endblock %} 
