@@ -247,82 +247,76 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-window.addEventListener('load', function() {
-    const ctx = document.getElementById('vehicleStatsChart').getContext('2d');
-    
-    // Data for the chart
-    const data = {
-        labels: ['Available', 'Currently Rented'],
-        datasets: [{
-            data: [{{ available_vehicles }}, {{ active_rentals }}],
-            backgroundColor: ['#10B981', '#3B82F6'],
-            borderWidth: 0
-        }]
-    };
-
-    // Chart configuration
-    const config = {
+    // Initialize Vehicle Stats Chart
+    const vehicleStatsCtx = document.getElementById('vehicleStatsChart').getContext('2d');
+    new Chart(vehicleStatsCtx, {
         type: 'doughnut',
-        data: data,
+        data: {
+            labels: ['Available', 'Currently Rented'],
+            datasets: [{
+                data: [{{ available_vehicles }}, {{ active_rentals }}],
+                backgroundColor: ['#10B981', '#3B82F6'],
+                borderWidth: 0
+            }]
+        },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            cutout: '60%',
             plugins: {
                 legend: {
-                    position: 'bottom'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw} vehicles`;
+                    display: false
+                }
+            },
+            cutout: '70%'
+        }
+    });
+
+    // Initialize Revenue Chart
+    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(revenueCtx, {
+        type: 'line',
+        data: {
+            labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            datasets: [{
+                label: 'Weekly Revenue',
+                data: {{ weekly_revenue|safe }},
+                borderColor: '#10B981',
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: true,
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return '₱' + value.toLocaleString();
                         }
                     }
-                }
-            }
-        }
-    };
-
-    // Create the chart
-    new Chart(ctx, config);
-});
-
-// Revenue Analytics Chart
-const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-new Chart(revenueCtx, {
-    type: 'line',
-    data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{
-            label: 'Revenue',
-            data: [{{ weekly_revenue|join:"," }}],
-            borderColor: '#3B82F6',
-            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-            fill: true,
-            tension: 0.4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    callback: function(value) {
-                        return '₱' + value;
+                },
+                x: {
+                    grid: {
+                        display: false
                     }
                 }
             }
         }
-    }
-});
+    });
 </script>
 {% endblock %} 
