@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2025 at 07:45 AM
+-- Generation Time: Jun 14, 2025 at 09:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -136,7 +136,7 @@ CREATE TABLE `core_user` (
 
 INSERT INTO `core_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `is_vehicle_owner`, `phone_number`, `address`, `profile_picture`, `age`, `date_of_birth`, `driver_license_picture`) VALUES
 (1, 'pbkdf2_sha256$600000$8sM12INmdeTUBYgyeNb689$+jtRSRLF1o705rxdP8llQiS8Z5PQ7D1hEkDdBF6frjk=', '2025-06-06 15:56:25.689459', 0, 'tellellycha', '', '', 'ajobalobao09@gmail.com', 0, 1, '2025-06-04 04:56:53.281696', 1, '09702268904', 'cagay', 'profile_pics/main_visual_2.png', NULL, NULL, ''),
-(2, 'pbkdf2_sha256$600000$Q6geLYAqAKVDBFV05Jp2cm$O6n8CIRk8MNWvUvhH6viHZeweM0KokQPhojM4R4daSU=', '2025-06-11 05:42:52.456502', 1, 'rentalia', 'AJ', 'Obalobao', 'ajobalobao246@gmail.com', 1, 1, '2025-06-04 05:17:11.024087', 0, '', '', 'profile_pictures/Rentalia.png', NULL, NULL, ''),
+(2, 'pbkdf2_sha256$600000$Q6geLYAqAKVDBFV05Jp2cm$O6n8CIRk8MNWvUvhH6viHZeweM0KokQPhojM4R4daSU=', '2025-06-14 07:07:42.346053', 1, 'rentalia', 'AJ', 'Obalobao', 'ajobalobao246@gmail.com', 1, 1, '2025-06-04 05:17:11.024087', 0, '', '', 'profile_pictures/Rentalia.png', NULL, NULL, ''),
 (3, 'pbkdf2_sha256$600000$fyzHCYVDmdSx3AyzOE7Wfl$4rYfUObjSzkwHKma2Se9Fqp2LJzBW4JYwQCPiuyIv0s=', '2025-06-04 07:30:06.131391', 0, 'tellellycha1', '', '', 'ajobalobao09@gmail.com', 0, 1, '2025-06-04 07:29:58.582115', 1, '09702268904', 'cagay', '', NULL, NULL, ''),
 (4, 'pbkdf2_sha256$600000$btoQkUFsnxWAEeg3YON7UO$V3NDKV/6dvz9H2r7xwYUBmfl44bCNonBSONvGygWdXc=', '2025-06-05 06:59:08.975353', 0, 'hopesfromnayeon', '', '', 'ajobalobao@filamer.edu.ph', 0, 1, '2025-06-05 06:59:08.706164', 1, '4523423423', 'cagay', 'profile_pictures/Chill_Guy.webp', NULL, NULL, ''),
 (6, 'pbkdf2_sha256$600000$ROCmJp8YPA8is4yEJhq9nH$rGBtf4mWX3fUUzJ0+cWf3s2N17PsU/KRBbzi+Ri0hU8=', '2025-06-11 05:27:21.380866', 0, 'admin123', '', '', 'ajobalobao@filamer.edu.ph', 0, 1, '2025-06-05 08:20:30.007994', 0, '1241241241', 'Roxas city Capiz', 'profile_pictures/Chill_Guy_Bkqx1B1.webp', NULL, NULL, ''),
@@ -144,7 +144,12 @@ INSERT INTO `core_user` (`id`, `password`, `last_login`, `is_superuser`, `userna
 (9, 'pbkdf2_sha256$600000$lfIchMwKajbNd7jFs2GKEb$i/GxvoteCOjhYZA/xppxHtSzxbwB6iI5ko4zxt2jq/o=', '2025-06-06 09:03:34.223449', 0, 'cutelazycha', '', '', 'ajobalobao@example.com', 0, 1, '2025-06-06 09:03:33.852826', 0, '42343245235', 'rwetwetwertwer', 'profile_pictures/lance.jpg', NULL, NULL, ''),
 (10, 'pbkdf2_sha256$600000$Civ20LIZJeXJYoeQ8qgBA9$abqKYl+jdxR2WfCxOuWnTK9cuzSEyM1FKLk4QsA34zQ=', '2025-06-06 09:25:49.949907', 0, 'hahaha123', 'ha', 'lee', 'ajobalobao@examplqe.com', 0, 1, '2025-06-06 09:25:49.716925', 0, '46545654645654', 'cagay roxas', 'profile_pictures/Chill_Guy_VELV4Vp.webp', NULL, NULL, ''),
 (11, 'pbkdf2_sha256$600000$ABfHnvwnpAqmpoXydT3ACG$CTSc1eLcxQFIf6Tu6R1a2Dw8WklxGthV8P7hZvYFUsQ=', '2025-06-11 04:55:04.897306', 1, 'rentalia2', '', '', 'ajobalobao09@gmail.com', 1, 1, '2025-06-11 04:54:48.141472', 0, '', '', '', NULL, NULL, ''),
-(12, 'pbkdf2_sha256$600000$Qtyt6ulvLvf4Ex5x3wgr9z$EHJXe+vaUpsLOWVW+QCCKESuWYDR/UaVIPUarM9Ka7M=', '2025-06-11 05:25:41.142354', 0, 'showmaker', 'show', 'maker', 'example@example.com', 0, 1, '2025-06-11 05:23:48.072186', 0, '124124123412', 'diri sa balay', 'profile_pictures/Mercedes_benz_glc.png', NULL, NULL, '');
+(12, 'pbkdf2_sha256$600000$Qtyt6ulvLvf4Ex5x3wgr9z$EHJXe+vaUpsLOWVW+QCCKESuWYDR/UaVIPUarM9Ka7M=', '2025-06-11 05:25:41.142354', 0, 'showmaker', 'show', 'maker', 'example@example.com', 0, 1, '2025-06-11 05:23:48.072186', 0, '124124123412', 'diri sa balay', 'profile_pictures/Mercedes_benz_glc.png', NULL, NULL, ''),
+(13, 'pbkdf2_sha256$600000$9D7cYJPI0WV1LXjtFT2OOJ$OJy8cN1TnCI0peNa512LJPeqvAXHrKKIRg0k3EK10fQ=', '2025-06-12 04:25:01.255165', 0, 'cutelazycat1', 'cat', 'dog', 'dog@gmail.com', 0, 1, '2025-06-12 04:25:01.032796', 0, '', '', '', NULL, NULL, ''),
+(14, 'pbkdf2_sha256$600000$CedFUYYfcRbMvfaMWAUeKc$I9dxQZUYbIYlyO352twdwWaHqD5icUzkUSNHUdM8Dbg=', '2025-06-14 07:07:11.130364', 0, 'catdog', 'rwqerwerw', 'wtrertertre', 'awrtwrw@gmai.com', 0, 1, '2025-06-12 04:26:30.513116', 0, '', '', '', NULL, NULL, ''),
+(17, 'pbkdf2_sha256$600000$44lPuR4iegHyqaf6ISRPxN$6JbfNYcNfC0txl6t21IsXIrWpdsjjtim6QdGYFsoT84=', NULL, 1, 'admin', '', '', 'admin@example.com', 1, 1, '2025-06-12 04:49:48.397653', 0, '', '', '', NULL, NULL, ''),
+(18, 'pbkdf2_sha256$600000$eoxkFJKNRtUd4joYY0pV7V$9kAsIvgD47eWptiHNNocZa+Az2o+ijB8md4ZirWVERQ=', '2025-06-12 08:02:41.827324', 0, 'john123', 'john', 'delecruz', 'ajobalobao@rwerwexample.com', 0, 1, '2025-06-12 08:02:41.594079', 0, '4213423432', 'cagay', 'profile_pictures/GLC.png', NULL, NULL, ''),
+(19, 'pbkdf2_sha256$600000$TNDnWuGhXtQFBHhRdJSD2E$KeDhSmTdoIwfjDnRL23WITrsn3ey1LovQlmUp/46Lm8=', '2025-06-12 09:40:18.094599', 0, 'takeyourtime111', 'ar', 'ar', 'Ar@example.com', 0, 1, '2025-06-12 09:39:41.062526', 0, '09432534534534', 'cagay', 'profile_pictures/Raptor.png', NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -213,7 +218,14 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (19, '2025-06-06 15:53:57.916437', '3', 'Earnings for Rental #17 - 2023 Toyota Avanza', 2, '[{\"changed\": {\"fields\": [\"Payment status\", \"Paid at\"]}}]', 10, 2),
 (20, '2025-06-10 03:28:31.836334', '4', 'Earnings for Rental #18 - 2021 Mercedes Benz GLC', 2, '[{\"changed\": {\"fields\": [\"Payment status\", \"Paid at\"]}}]', 10, 2),
 (21, '2025-06-11 05:11:59.155079', '8', '2022 Nissan Patrol', 1, '[{\"added\": {}}]', 7, 2),
-(22, '2025-06-11 05:14:54.442918', '4', 'Panitan', 1, '[{\"added\": {}}]', 9, 2);
+(22, '2025-06-11 05:14:54.442918', '4', 'Panitan', 1, '[{\"added\": {}}]', 9, 2),
+(23, '2025-06-12 05:09:30.100389', '11', 'Roxas,City Capiz', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 9, 2),
+(24, '2025-06-12 05:10:01.461651', '10', 'Ivisan,Capiz', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 9, 2),
+(25, '2025-06-12 05:10:28.273629', '9', 'President,Roxas Capiz', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 9, 2),
+(26, '2025-06-12 05:13:08.215369', '15', '2024 Hyundai Stargazer', 1, '[{\"added\": {}}]', 7, 2),
+(27, '2025-06-12 05:35:44.062579', '14', '2023 Tesla Model 3', 2, '[{\"changed\": {\"fields\": [\"Daily rate\", \"Owner\"]}}]', 7, 2),
+(28, '2025-06-12 05:36:13.708203', '8', 'Earnings for Rental #22 - 2023 Ford Raptor', 2, '[{\"changed\": {\"fields\": [\"Payment status\", \"Paid at\"]}}]', 10, 2),
+(29, '2025-06-13 13:46:40.000121', '14', '2023 Tesla Model 3', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 7, 2);
 
 -- --------------------------------------------------------
 
@@ -285,7 +297,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (22, 'vehicles', '0002_location_alter_vehicle_vehicle_type', '2025-06-04 06:38:03.718388'),
 (23, 'vehicles', '0003_vehicle_location', '2025-06-04 07:08:52.549433'),
 (24, 'core', '0003_alter_user_phone_number_alter_user_profile_picture', '2025-06-06 08:41:22.780129'),
-(25, 'vehicles', '0004_rental_commission_rate_earnings', '2025-06-06 08:41:22.851019');
+(25, 'vehicles', '0004_rental_commission_rate_earnings', '2025-06-06 08:41:22.851019'),
+(26, 'vehicles', '0005_vehicle_latitude_vehicle_location_address_and_more', '2025-06-12 04:15:50.399423'),
+(27, 'vehicles', '0006_location_address_location_latitude_and_more', '2025-06-12 04:49:43.537530');
 
 -- --------------------------------------------------------
 
@@ -305,7 +319,8 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('2at4lko67pdgses554v1ku37wsmre796', '.eJxVjMsOwiAURP-FtSG8ubh0328gXB5SNZCUdmX8d9ukC53lnDPzJj5sa_XbyIufE7kSTi6_HYb4zO0A6RHavdPY27rMSA-FnnTQqaf8up3u30ENo-5rwVQqTBuwnKHQBouQVulgXImu7BFWY-BgYnLMSCccgrLZAIsMQEry-QLIazb8:1uNAKF:YBZJpl16mb4l4-FPPVcQhibUgj3mu8P3pedF5whM1qM', '2025-06-19 13:08:07.059360'),
-('fewrl74d7aokgp24rnqep4gbfw0lblzq', '.eJxVjDEOwjAMRe-SGUWO09SBkZ0zVE5sSAGlUtNOiLtDpQ6w_vfef5mB16UMa9N5GMWcDJrD75Y4P7RuQO5cb5PNU13mMdlNsTtt9jKJPs-7-3dQuJVv7ZCw67sA1B2BKPfgxANTQAeQI6gkjYkAk4BHT5xY6CqoIYagUc37A59CNvw:1uNPck:41OmDXyrqNMl4frurlpmOM8yXMCTKSu1jNS5H2O9wXw', '2025-06-20 05:28:14.158662');
+('fewrl74d7aokgp24rnqep4gbfw0lblzq', '.eJxVjDEOwjAMRe-SGUWO09SBkZ0zVE5sSAGlUtNOiLtDpQ6w_vfef5mB16UMa9N5GMWcDJrD75Y4P7RuQO5cb5PNU13mMdlNsTtt9jKJPs-7-3dQuJVv7ZCw67sA1B2BKPfgxANTQAeQI6gkjYkAk4BHT5xY6CqoIYagUc37A59CNvw:1uNPck:41OmDXyrqNMl4frurlpmOM8yXMCTKSu1jNS5H2O9wXw', '2025-06-20 05:28:14.158662'),
+('q5ee8d8ap1zj0r9nkimdjjopr1meahrc', 'e30:1uPeCd:4lXJlbF_GI_qMyNnYIiR1V99DxPvI85NBaLMYbkZnZc', '2025-06-26 09:26:31.779299');
 
 -- --------------------------------------------------------
 
@@ -329,11 +344,13 @@ CREATE TABLE `vehicles_earnings` (
 --
 
 INSERT INTO `vehicles_earnings` (`id`, `owner_earnings`, `platform_commission`, `payment_status`, `paid_at`, `created_at`, `updated_at`, `rental_id`) VALUES
-(1, 23392.80, 2599.20, 'PAID', '2025-06-06 08:48:11.000000', '2025-06-06 08:44:57.971251', '2025-06-06 08:48:13.685548', 15),
-(2, 148500.00, 16500.00, 'PENDING', NULL, '2025-06-06 08:45:17.065892', '2025-06-06 08:45:17.065917', 16),
-(3, 9450.00, 1050.00, 'PAID', '2025-06-06 15:53:54.000000', '2025-06-06 09:04:11.648189', '2025-06-06 15:53:57.913138', 17),
-(4, 148500.00, 16500.00, 'PAID', '2025-06-02 03:28:29.000000', '2025-06-10 03:20:04.581928', '2025-06-10 03:28:31.834998', 18),
-(5, 13500.00, 1500.00, 'PENDING', NULL, '2025-06-11 05:24:58.149731', '2025-06-11 05:24:58.149746', 19);
+(7, 135.00, 15.00, 'PENDING', NULL, '2025-06-12 05:10:43.461370', '2025-06-12 05:10:43.461387', 21),
+(8, 9000.00, 1000.00, 'PAID', '2025-06-12 05:36:10.000000', '2025-06-12 05:32:47.274885', '2025-06-12 05:36:13.706062', 22),
+(9, 5400.00, 600.00, 'PENDING', NULL, '2025-06-12 06:10:12.475232', '2025-06-12 08:41:27.187530', 23),
+(10, 342.00, 38.00, 'PENDING', NULL, '2025-06-12 06:46:28.495731', '2025-06-12 08:51:16.021237', 24),
+(11, 16200.00, 1800.00, 'PENDING', NULL, '2025-06-12 09:06:30.557113', '2025-06-12 09:06:30.557129', 25),
+(12, 202.50, 22.50, 'PENDING', NULL, '2025-06-14 07:04:13.812122', '2025-06-14 07:04:13.812137', 26),
+(13, 2070.00, 230.00, 'PENDING', NULL, '2025-06-14 07:07:21.296655', '2025-06-14 07:07:21.296675', 27);
 
 -- --------------------------------------------------------
 
@@ -343,18 +360,20 @@ INSERT INTO `vehicles_earnings` (`id`, `owner_earnings`, `platform_commission`, 
 
 CREATE TABLE `vehicles_location` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `latitude` decimal(9,6) DEFAULT NULL,
+  `longitude` decimal(9,6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vehicles_location`
 --
 
-INSERT INTO `vehicles_location` (`id`, `name`) VALUES
-(2, 'Ivisan,Capiz'),
-(4, 'Panitan'),
-(3, 'President,Roxas'),
-(1, 'Roxas,City');
+INSERT INTO `vehicles_location` (`id`, `name`, `address`, `latitude`, `longitude`) VALUES
+(9, 'President,Roxas Capiz', '123 Downtown St, New York, NY', 40.712800, -74.006000),
+(10, 'Ivisan,Capiz', '456 Uptown Ave, New York, NY', 40.783100, -73.971200),
+(11, 'Roxas,City Capiz', '789 Midtown Blvd, New York, NY', 40.754900, -73.984000);
 
 -- --------------------------------------------------------
 
@@ -379,23 +398,13 @@ CREATE TABLE `vehicles_rental` (
 --
 
 INSERT INTO `vehicles_rental` (`id`, `start_date`, `end_date`, `total_cost`, `is_active`, `created_at`, `renter_id`, `vehicle_id`, `commission_rate`) VALUES
-(1, '2025-06-11', '2025-06-27', 16000.00, 0, '2025-06-05 04:33:53.798618', 1, 1, 10.00),
-(2, '2025-06-05', '2025-06-18', 65000.00, 1, '2025-06-05 04:46:11.348582', 1, 2, 10.00),
-(3, '2025-06-05', '2025-06-11', 25992.00, 1, '2025-06-05 06:07:32.382367', 2, 4, 10.00),
-(4, '2025-06-12', '2025-06-18', 6000.00, 0, '2025-06-05 06:50:31.450706', 2, 1, 10.00),
-(5, '2025-06-06', '2025-06-10', 4000.00, 0, '2025-06-05 07:16:41.574324', 4, 1, 10.00),
-(6, '2025-06-14', '2025-06-25', 11000.00, 0, '2025-06-05 08:09:51.459643', 1, 1, 10.00),
-(8, '2025-06-05', '2025-06-11', 6000.00, 1, '2025-06-05 08:21:09.334809', 6, 1, 10.00),
-(9, '2025-06-12', '2025-06-17', 25000.00, 0, '2025-06-05 08:21:31.912144', 6, 2, 10.00),
-(10, '2025-06-19', '2025-06-25', 90000.00, 0, '2025-06-05 08:23:37.191421', 6, 6, 10.00),
-(11, '2025-06-12', '2025-06-18', 780000.00, 0, '2025-06-05 09:48:34.964333', 6, 3, 10.00),
-(13, '2025-06-05', '2025-06-18', 65000.00, 1, '2025-06-05 13:07:34.248448', 8, 2, 10.00),
-(14, '2025-06-20', '2025-06-24', 60000.00, 0, '2025-06-06 08:42:55.032427', 1, 6, 10.00),
-(15, '2025-06-12', '2025-06-18', 25992.00, 0, '2025-06-06 08:44:57.963358', 1, 4, 10.00),
-(16, '2025-06-14', '2025-06-25', 165000.00, 0, '2025-06-06 08:45:17.057461', 1, 6, 10.00),
-(17, '2025-06-12', '2025-06-19', 10500.00, 1, '2025-06-06 09:04:11.641130', 9, 5, 10.00),
-(18, '2025-06-12', '2025-06-23', 165000.00, 0, '2025-06-10 03:20:04.578220', 6, 7, 10.00),
-(19, '2025-06-11', '2025-06-12', 15000.00, 1, '2025-06-11 05:24:58.142936', 12, 6, 10.00);
+(21, '2025-06-13', '2025-06-15', 150.00, 0, '2025-06-12 05:10:43.453367', 2, 12, 10.00),
+(22, '2025-06-18', '2025-06-23', 10000.00, 0, '2025-06-12 05:32:47.261708', 2, 16, 10.00),
+(23, '2025-06-12', '2025-06-15', 6000.00, 1, '2025-06-12 06:10:12.457654', 14, 15, 10.00),
+(24, '2025-06-12', '2025-06-16', 380.00, 1, '2025-06-12 06:46:28.492909', 14, 13, 10.00),
+(25, '2025-06-13', '2025-06-22', 18000.00, 1, '2025-06-12 09:06:30.547879', 2, 16, 10.00),
+(26, '2025-06-20', '2025-06-23', 225.00, 1, '2025-06-14 07:04:13.803248', 2, 12, 10.00),
+(27, '2025-06-14', '2025-06-15', 2300.00, 1, '2025-06-14 07:07:21.279251', 14, 14, 10.00);
 
 -- --------------------------------------------------------
 
@@ -416,22 +425,25 @@ CREATE TABLE `vehicles_vehicle` (
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
   `owner_id` bigint(20) NOT NULL,
-  `location_id` bigint(20) DEFAULT NULL
+  `location_id` bigint(20) DEFAULT NULL,
+  `latitude` decimal(9,6) DEFAULT NULL,
+  `location_address` varchar(255) DEFAULT NULL,
+  `longitude` decimal(9,6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vehicles_vehicle`
 --
 
-INSERT INTO `vehicles_vehicle` (`id`, `make`, `model`, `year`, `vehicle_type`, `daily_rate`, `is_available`, `image`, `description`, `created_at`, `updated_at`, `owner_id`, `location_id`) VALUES
-(1, 'Hyundai', 'Stargazer', 2024, 'SUV', 1000.00, 1, 'vehicle_images/KS-quarter-pc.png', '1.5 GL IVT', '2025-06-04 05:24:09.958830', '2025-06-11 05:13:21.098296', 2, 2),
-(2, 'Honda', 'CR-V', 2025, 'SEDAN', 5000.00, 0, 'vehicle_images/Honda_srv.png', 'Hybrid', '2025-06-04 05:53:02.781909', '2025-06-05 13:07:34.254963', 2, 2),
-(3, 'Porsche', '911 Carrera', 2023, 'LUXURY', 130000.00, 1, 'vehicle_images/porche.png', 'Gasoline', '2025-06-04 06:01:33.725245', '2025-06-05 09:48:43.370902', 2, 3),
-(4, 'Hyundai', 'Stargazer', 2022, 'SUV', 4332.00, 1, 'vehicle_images/Stargazer.png', '6 Seater', '2025-06-05 04:51:18.817460', '2025-06-06 15:57:01.945882', 1, 2),
-(5, 'Toyota', 'Avanza', 2023, 'SUV', 1500.00, 0, 'vehicle_images/avanza.png', '6 seater', '2025-06-05 06:34:11.369646', '2025-06-06 09:04:11.654254', 2, 3),
-(6, 'Porsche', '911 Carrera', 2023, 'LUXURY', 15000.00, 0, 'vehicle_images/porche_ONVv1Oj.png', '2 seaters', '2025-06-05 08:23:01.843495', '2025-06-11 05:24:58.152101', 2, 4),
-(7, 'Mercedes Benz', 'GLC', 2021, 'SUV', 15000.00, 1, 'vehicle_images/Mercedes_benz_glc.png', '4 Seaters', '2025-06-06 09:17:39.717469', '2025-06-10 03:20:25.824556', 2, 1),
-(8, 'Nissan', 'Patrol', 2022, 'SUV', 10000.00, 1, 'vehicle_images/nissan-patrol-2022.jpg', '5 seaters', '2025-06-11 05:11:59.154139', '2025-06-11 05:11:59.154157', 2, 2);
+INSERT INTO `vehicles_vehicle` (`id`, `make`, `model`, `year`, `vehicle_type`, `daily_rate`, `is_available`, `image`, `description`, `created_at`, `updated_at`, `owner_id`, `location_id`, `latitude`, `location_address`, `longitude`) VALUES
+(12, 'Toyota', 'Camry', 2022, 'SEDAN', 75.00, 0, 'vehicle_images/avanza.png', 'Test vehicle at Downtown', '2025-06-12 04:49:48.612581', '2025-06-14 07:04:13.822767', 17, 9, 40.712800, '123 Downtown St, New York, NY', -74.006000),
+(13, 'Honda', 'CR-V', 2023, 'SUV', 95.00, 0, 'vehicle_images/Honda_srv.png', 'Test vehicle at Uptown', '2025-06-12 04:49:48.621287', '2025-06-12 06:46:28.497538', 17, 9, 40.783100, '456 Uptown Ave, New York, NY', -73.971200),
+(14, 'Tesla', 'Model 3', 2023, 'ELECTRIC', 2300.00, 0, 'vehicle_images/tesla.png', 'Test vehicle at Midtown', '2025-06-12 04:49:48.631203', '2025-06-14 07:07:21.303563', 2, 9, 40.754900, '789 Midtown Blvd, New York, NY', -73.984000),
+(15, 'Hyundai', 'Stargazer', 2024, 'SUV', 2000.00, 0, 'vehicle_images/Stargazer_HymrNDv.png', '5 Seater', '2025-06-12 05:13:08.213584', '2025-06-12 06:10:12.480769', 2, 10, NULL, NULL, NULL),
+(16, 'Ford', 'Raptor', 2023, 'TRUCK', 2000.00, 0, 'vehicle_images/Raptor.png', '4 seaters', '2025-06-12 05:32:31.406927', '2025-06-12 09:06:30.559016', 2, 10, NULL, NULL, NULL),
+(17, 'Mercedes Benz', 'GLC', 2023, 'SUV', 15000.00, 1, 'vehicle_images/GLC.png', '5 seaters', '2025-06-12 05:46:52.326092', '2025-06-12 05:46:52.326111', 2, NULL, NULL, NULL, NULL),
+(18, 'Porsche', '911 Carrera', 2024, 'SPORTS', 50000.00, 1, 'vehicle_images/porche_6pqvHP2.png', '2 Seaters', '2025-06-12 09:13:57.949681', '2025-06-12 09:13:57.949698', 2, NULL, NULL, NULL, NULL),
+(19, 'Porsche', '911 Carrera', 2024, 'SPORTS', 5000.00, 1, 'vehicle_images/porche_dOp0mus.png', '2 Seaters', '2025-06-12 09:18:20.396718', '2025-06-12 09:18:20.396735', 2, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -566,7 +578,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `core_user`
 --
 ALTER TABLE `core_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `core_user_groups`
@@ -584,7 +596,7 @@ ALTER TABLE `core_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -596,31 +608,31 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `vehicles_earnings`
 --
 ALTER TABLE `vehicles_earnings`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vehicles_location`
 --
 ALTER TABLE `vehicles_location`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `vehicles_rental`
 --
 ALTER TABLE `vehicles_rental`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `vehicles_vehicle`
 --
 ALTER TABLE `vehicles_vehicle`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
