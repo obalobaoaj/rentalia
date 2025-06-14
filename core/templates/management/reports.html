@@ -170,17 +170,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Revenue Trend Chart
     const revenueTrendCtx = document.getElementById('revenueTrendChart').getContext('2d');
+    const revenueData = {{ revenue_data|safe }};  // Parse the JSON data
+    const revenueLabels = {{ revenue_labels|safe }};  // Parse the JSON data
+    
     new Chart(revenueTrendCtx, {
         type: 'line',
         data: {
-            labels: {{ revenue_labels|safe }},
+            labels: revenueLabels,
             datasets: [{
                 label: 'Revenue',
-                data: {{ revenue_data }},
+                data: revenueData,
                 borderColor: '#10B981',
                 backgroundColor: 'rgba(16, 185, 129, 0.1)',
                 fill: true,
-                tension: 0.4
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6
             }]
         },
         options: {
@@ -188,7 +193,15 @@ document.addEventListener('DOMContentLoaded', function() {
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: false
+                    display: true,
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return '₱' + context.parsed.y.toFixed(2);
+                        }
+                    }
                 }
             },
             scales: {
@@ -196,10 +209,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return '₱' + value;
+                            return '₱' + value.toFixed(2);
                         }
                     }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
                 }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
             }
         }
     });

@@ -387,19 +387,28 @@ def deactivate_user(request, user_id):
 
 @login_required
 def reports(request):
-    # Get the selected time period (default to 30 days)
-    period = int(request.GET.get('period', 30))
+    # Get the selected time period (default to 7 days)
+    period = int(request.GET.get('period', 7))
     end_date = timezone.now()
     start_date = end_date - timedelta(days=period)
     previous_start_date = start_date - timedelta(days=period)
 
-    # Calculate current period stats
-    current_rentals = Rental.objects.filter(created_at__range=(start_date, end_date))
+    # Calculate current period stats with debug logging
+    print(f"Calculating revenue from {start_date} to {end_date}")
+    current_rentals = Rental.objects.filter(
+        created_at__range=(start_date, end_date),
+        is_active=True  # Only count active rentals
+    )
     current_revenue = current_rentals.aggregate(Sum('total_cost'))['total_cost__sum'] or 0
+    print(f"Current revenue: {current_revenue}")
 
-    # Calculate previous period stats for comparison
-    previous_rentals = Rental.objects.filter(created_at__range=(previous_start_date, start_date))
+    # Calculate previous period stats
+    previous_rentals = Rental.objects.filter(
+        created_at__range=(previous_start_date, start_date),
+        is_active=True  # Only count active rentals
+    )
     previous_revenue = previous_rentals.aggregate(Sum('total_cost'))['total_cost__sum'] or 0
+    print(f"Previous revenue: {previous_revenue}")
 
     # Calculate revenue growth
     revenue_growth = 0
@@ -435,41 +444,22 @@ def reports(request):
         .order_by('-rental_count')[:5]
     )
 
-    # Prepare data for revenue trend chart
-    if period <= 30:
-        # Daily data for 30 days or less
-        labels = [(end_date - timedelta(days=x)).strftime('%b %d') for x in range(period-1, -1, -1)]
-        daily_revenue = (
-            Rental.objects
-            .filter(created_at__range=(start_date, end_date))
-            .annotate(date=TruncDate('created_at'))
-            .values('date')
-            .annotate(total=Sum('total_cost'))
-            .order_by('date')
-        )
+    # Prepare data for revenue trend chart with daily granularity
+    labels = []
+    revenue_data = []
+    
+    for i in range(period):
+        current_date = end_date.date() - timedelta(days=i)
+        daily_revenue = Rental.objects.filter(
+            created_at__date=current_date,
+            is_active=True
+        ).aggregate(
+            total=Sum('total_cost')
+        )['total'] or 0
         
-        revenue_data = [0] * period
-        for entry in daily_revenue:
-            days_ago = (end_date.date() - entry['date']).days
-            if 0 <= days_ago < period:
-                revenue_data[period - 1 - days_ago] = float(entry['total'])
-    else:
-        # Monthly data for longer periods
-        labels = []
-        revenue_data = []
-        current = end_date
-        while current >= start_date:
-            month_start = current.replace(day=1)
-            if month_start < start_date:
-                month_start = start_date
-            month_revenue = (
-                Rental.objects
-                .filter(created_at__range=(month_start, current))
-                .aggregate(total=Sum('total_cost'))['total']
-            )
-            labels.insert(0, current.strftime('%b %Y'))
-            revenue_data.insert(0, float(month_revenue or 0))
-            current = (month_start - timedelta(days=1))
+        labels.insert(0, current_date.strftime('%b %d'))
+        revenue_data.insert(0, float(daily_revenue))
+        print(f"Revenue for {current_date}: {daily_revenue}")
 
     # Prepare data for popular vehicles chart
     vehicle_labels = [str(v) for v in popular_vehicles]
@@ -500,7 +490,7 @@ def reports(request):
         'revenue_growth': round(revenue_growth, 1),
         'avg_rental_duration': avg_rental_duration,
         'revenue_labels': json.dumps(labels),
-        'revenue_data': revenue_data,
+        'revenue_data': json.dumps(revenue_data),  # Ensure proper JSON serialization
         'vehicle_labels': json.dumps(vehicle_labels),
         'vehicle_data': vehicle_data,
         'recent_rentals': recent_rentals,
